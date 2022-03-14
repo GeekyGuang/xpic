@@ -1,4 +1,4 @@
-export const History:React.FC = () => {
+const History:React.FC = () => {
   return (
     <>
     <div>
@@ -7,3 +7,5 @@ export const History:React.FC = () => {
     </>
   )
 }
+
+export default History

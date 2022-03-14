@@ -1,4 +1,4 @@
-export const Home:React.FC = () => {
+const Home:React.FC = () => {
   return (
     <>
     <div>
@@ -7,3 +7,5 @@ export const Home:React.FC = () => {
     </>
   )
 }
+
+export default Home

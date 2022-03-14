@@ -1,4 +1,4 @@
-export const About:React.FC = () => {
+const About:React.FC = () => {
   return (
     <>
     <div>
@@ -7,3 +7,5 @@ export const About:React.FC = () => {
     </>
   )
 }
+
+export default About
