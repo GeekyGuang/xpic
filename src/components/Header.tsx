@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 const StyledHeader = styled.header`
   background: #343a40;
-  padding: 20px 100px;
+  padding: 14px 100px;
   display: flex;
   align-items: center;
   width: 100%;
@@ -34,8 +34,8 @@ const StyledHeader = styled.header`
       width: 100%;
       position: absolute;
       left: 0;
-      top: 28px;
-      background: #2280ff;
+      top: 26px;
+      background: #f082ac;
     }
   }
 `
