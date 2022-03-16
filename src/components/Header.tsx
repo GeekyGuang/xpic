@@ -1,21 +1,22 @@
-import { NavLink } from "react-router-dom"
+import { NavLink } from 'react-router-dom'
 import LogoUrl from './logo.svg'
 import styled from 'styled-components'
 
 const StyledHeader = styled.header`
   background: #343a40;
-  padding: 20px;
+  padding: 20px 100px;
   display: flex;
   align-items: center;
+  width: 100%;
 
   > img {
     height: 30px;
   }
 
   > nav > a {
-    text-decoration: none;
     color: #9a9787;
     margin-left: 16px;
+    padding: 0 4px;
 
     &:hover {
       color: #cccdb8;
@@ -23,6 +24,7 @@ const StyledHeader = styled.header`
 
     &.active {
       position: relative;
+      color: #cccdb8;
     }
 
     &.active::after {
@@ -34,12 +36,11 @@ const StyledHeader = styled.header`
       left: 0;
       top: 28px;
       background: #2280ff;
-
     }
   }
 `
 
-export const Header:React.FC = () => {
+export const Header: React.FC = () => {
   return (
     <StyledHeader>
       <img src={LogoUrl} alt="logo" />
