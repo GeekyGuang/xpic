@@ -1,11 +1,15 @@
-import { observable, action } from 'mobx'
+import { makeObservable, observable, action } from 'mobx'
 
 export class AuthStore {
   @observable isLogin = false
   @observable isLoading = false
   @observable values = {
-    username: '',
+    username: 'aaa',
     password: '',
+  }
+
+  constructor() {
+    makeObservable(this)
   }
 
   @action setIsLoading(isLogin: boolean) {
@@ -13,6 +17,7 @@ export class AuthStore {
   }
 
   @action setUsername(username: string) {
+    console.log(username)
     this.values.username = username
   }
 
