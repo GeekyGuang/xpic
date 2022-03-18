@@ -1,6 +1,7 @@
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import LogoUrl from './logo.svg'
 import styled from 'styled-components'
+import {Button} from 'antd'
 
 const StyledHeader = styled.header`
   background: #343a40;
@@ -49,6 +50,12 @@ export const Header: React.FC = () => {
         <NavLink to="/history">上传历史</NavLink>
         <NavLink to="/about">关于</NavLink>
       </nav>
+      <div style={{marginLeft: 'auto'}}>
+        <Link to="/login"><Button type="default" size="small" style={{marginRight: '8px'}}>登录</Button></Link>
+        <Link to="/register">
+        <Button type="default" size="small">注册</Button>
+        </Link>
+      </div>
     </StyledHeader>
   )
 }
