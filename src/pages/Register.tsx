@@ -3,10 +3,10 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   width: 600px;
-  margin: 30px auto;
+  margin: 50px auto;
   padding: 20px 50px;
   border-radius: 4px;
-  box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, .2);
+  box-shadow: 0px 0px 5px 0 rgba(0, 0, 0, .2);
 
   .ant-form-item-control-input-content {
     display: flex;
@@ -43,7 +43,14 @@ const Register: React.FC = () => {
       <Form.Item
         label="用户名"
         name="username"
-        rules={[{ required: true, message: '请输入用户名!' }]}
+        rules={[{ required: true, message: '请输入用户名!' }, () => ({
+          validator(_, value){
+            if(/\W/.test(value)) return Promise.reject('只能由字母数字下划线组成')
+            if(value.length > 10) return Promise.reject('最多10个字符')
+            if(value.length < 3) return Promise.reject('最少3个字符')
+            return Promise.resolve()
+          }
+        })]}
       >
         <Input />
       </Form.Item>
@@ -58,7 +65,7 @@ const Register: React.FC = () => {
 
       <Form.Item
         label="确认密码"
-        name="Confirm password"
+        name="ConfirmPassword"
         rules={[{ required: true, message: '请输入确认密码!' }, ({ getFieldValue }) => ({
           validator(_, value) {
             if (!value || getFieldValue('password') === value) {
