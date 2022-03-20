@@ -1,5 +1,6 @@
 import { Form, Input, Button } from 'antd';
 import styled from 'styled-components';
+import { useStore } from '../store';
 
 const Wrapper = styled.div`
   width: 600px;
@@ -30,13 +31,26 @@ const Wrapper = styled.div`
 `
 
 const Register: React.FC = () => {
+  const {AuthStore} = useStore()
+
   const onFinish = (values: any) => {
     console.log('Success:', values);
+    AuthStore.setUsername(values.username)
+    AuthStore.setPassword(values.password)
+    AuthStore.register().then((user) => {
+      console.log(user)
+      console.log('注册成功')
+    }, (err) => {
+      console.log('注册失败')
+      console.log(err)
+    })
   };
 
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
   };
+
+
 
   return (
     <Wrapper>
