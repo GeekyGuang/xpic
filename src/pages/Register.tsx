@@ -58,7 +58,13 @@ const Register: React.FC = () => {
       <Form.Item
         label="密码"
         name="password"
-        rules={[{ required: true, message: '请输入密码!' }]}
+        rules={[{ required: true, message: '请输入密码!' }, {
+          min: 4,
+          message: '最少4个字符'
+        }, {
+          max: 16,
+          message: '最多16个字符'
+        }]}
       >
         <Input.Password />
       </Form.Item>
