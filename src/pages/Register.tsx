@@ -40,7 +40,7 @@ const Register: React.FC = () => {
 
   return (
     <Wrapper>
-      <h2>欢迎</h2>
+      <h2>用户注册</h2>
     <Form
       name="basic"
       labelCol={{ span: 4 }}
