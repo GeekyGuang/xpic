@@ -8,6 +8,16 @@ const Wrapper = styled.div`
   border-radius: 4px;
   box-shadow: 0px 0px 5px 0 rgba(0, 0, 0, .2);
 
+  @media (max-width: 700px) {
+    width: 500px;
+    padding: 20px 20px;
+  }
+
+  @media (max-width: 575px) {
+    width: 300px;
+    padding: 20px 20px;
+  }
+
   .ant-form-item-control-input-content {
     display: flex;
     justify-content: center;

@@ -39,6 +39,15 @@ const StyledHeader = styled.header`
       background: #f082ac;
     }
   }
+
+  @media (max-width: 700px) {
+    padding: 14px 10px;
+
+    > nav > a {
+      margin-left: 8px;
+      padding: 0 4px;
+    }
+  }
 `
 
 export const Header: React.FC = () => {
