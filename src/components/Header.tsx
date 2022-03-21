@@ -1,10 +1,10 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import LogoUrl from './logo.svg'
 import styled from 'styled-components'
-import {Button} from 'antd'
+import { Button } from 'antd'
 import { useStore } from '../store'
 import { observer } from 'mobx-react'
-import Auth from '../models'
+import { Auth } from '../models'
 
 const StyledHeader = styled.header`
   background: #343a40;
@@ -54,7 +54,7 @@ const StyledHeader = styled.header`
 `
 
 export const Header: React.FC = observer(() => {
-  const {UserStore} = useStore()
+  const { UserStore } = useStore()
   const navigate = useNavigate()
 
   const handleLogout = () => {
@@ -72,19 +72,29 @@ export const Header: React.FC = observer(() => {
         <NavLink to="/history">上传历史</NavLink>
         <NavLink to="/about">关于</NavLink>
       </nav>
-      { UserStore.currentUser ? 
-      <div style={{marginLeft: 'auto'}}>
-        
-        <span style={{color: 'white', marginRight: '8px'}}>{UserStore.currentUser.attributes.username}</span>
-        <Button type="default" size="small" onClick={handleLogout}>注销</Button>
-      </div>
-      :
-      <div style={{marginLeft: 'auto'}}>
-        <Link to="/login"><Button type="default" size="small" style={{marginRight: '8px'}}>登录</Button></Link>
-        <Link to="/register">
-        <Button type="default" size="small">注册</Button>
-        </Link>
-      </div>}
+      {UserStore.currentUser ? (
+        <div style={{ marginLeft: 'auto' }}>
+          <span style={{ color: 'white', marginRight: '8px' }}>
+            {UserStore.currentUser.attributes.username}
+          </span>
+          <Button type="default" size="small" onClick={handleLogout}>
+            注销
+          </Button>
+        </div>
+      ) : (
+        <div style={{ marginLeft: 'auto' }}>
+          <Link to="/login">
+            <Button type="default" size="small" style={{ marginRight: '8px' }}>
+              登录
+            </Button>
+          </Link>
+          <Link to="/register">
+            <Button type="default" size="small">
+              注册
+            </Button>
+          </Link>
+        </div>
+      )}
     </StyledHeader>
   )
 })
