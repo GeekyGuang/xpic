@@ -1,4 +1,5 @@
 import { Form, Input, Button } from 'antd';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useStore } from '../store';
 
@@ -32,6 +33,7 @@ const Wrapper = styled.div`
 
 const Login: React.FC = () => {
   const {AuthStore} = useStore()
+  const navigate = useNavigate()
 
   const onFinish = (values: any) => {
     console.log('Success:', values);
@@ -40,6 +42,7 @@ const Login: React.FC = () => {
     AuthStore.login().then((user) => {
       console.log(user)
       console.log('登录成功')
+      navigate('/')
     }, (err) => {
       console.log('登录失败')
       console.log(err)

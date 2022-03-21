@@ -1,7 +1,8 @@
 import { makeObservable, observable, action } from 'mobx'
 import Auth from '../models'
+import UserStore from '../store/user'
 
-export class AuthStore {
+class AuthStore {
   @observable isLogin = false
   @observable isLoading = false
   @observable values = {
@@ -32,6 +33,7 @@ export class AuthStore {
           .then(
             (user) => { 
               console.log('登录成功')
+              UserStore.fetchUser()
               resolve(user)
             }, 
             (err) => {
@@ -47,6 +49,7 @@ export class AuthStore {
           .then(
             (user) => { 
               console.log('注册成功')
+              UserStore.fetchUser()
               resolve(user)
             }, 
             (err) => {
@@ -58,6 +61,10 @@ export class AuthStore {
 
   @action logout() {
     Auth.logOut()
+    UserStore.resetUser()
     console.log('已注销')
   }
 }
+
+
+export default new AuthStore()
