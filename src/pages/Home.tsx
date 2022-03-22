@@ -1,9 +1,11 @@
-const Home:React.FC = () => {
+import Uploading from '../components/Uploading'
+
+const Home: React.FC = () => {
   return (
     <>
-    <div>
-      Home
-    </div>
+      <div>
+        <Uploading />
+      </div>
     </>
   )
 }
