@@ -1,10 +1,10 @@
-import Uploading from '../components/Uploading'
+import Uploader from '../components/Uploader'
 
 const Home: React.FC = () => {
   return (
     <>
       <div>
-        <Uploading />
+        <Uploader />
       </div>
     </>
   )

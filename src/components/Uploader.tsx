@@ -1,16 +1,16 @@
-import { MutableRefObject, useRef } from 'react'
 import { useStore } from '../store'
-import { Upload } from 'antd';
-import { InboxOutlined } from '@ant-design/icons';
+import { Upload } from 'antd'
+import { InboxOutlined } from '@ant-design/icons'
+import { observer } from 'mobx-react'
 
-const { Dragger } = Upload;
+const { Dragger } = Upload
 
-const Uploading = () => {
+const Uploader = observer(() => {
   const { ImageStore } = useStore()
 
   const props = {
     showUploadList: false,
-    beforeUpload: (file:any) => {
+    beforeUpload: (file: any) => {
       ImageStore.setFile(file)
       ImageStore.setFilename(file.name)
       ImageStore.upload()
@@ -18,7 +18,7 @@ const Uploading = () => {
         .catch((err) => {
           console.error(err)
         })
-      return false;
+      return false
     },
   }
 
@@ -29,18 +29,22 @@ const Uploading = () => {
         <p className="ant-upload-drag-icon">
           <InboxOutlined />
         </p>
-        <p className="ant-upload-text">Click or drag file to this area to upload</p>
+        <p className="ant-upload-text">
+          Click or drag file to this area to upload
+        </p>
         <p className="ant-upload-hint">
-          Support for a single or bulk upload. Strictly prohibit from uploading company data or other
-          band files
+          Support for a single or bulk upload. Strictly prohibit from uploading
+          company data or other band files
         </p>
       </Dragger>
       <div>
         <h2>保存地址</h2>
-        {ImageStore.serverFile ? ImageStore.serverFile.attributes.url.attributes.url : ''}
+        {ImageStore.serverFile
+          ? ImageStore.serverFile.attributes.url.attributes.url
+          : ''}
       </div>
     </>
   )
-}
+})
 
-export default Uploading
+export default Uploader
