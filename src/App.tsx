@@ -12,7 +12,7 @@ const History = lazy(() => import('./pages/History'))
 const Login = lazy(() => import('./pages/Login'))
 const Register = lazy(() => import('./pages/Register'))
 
-const PrivateRoute = ({ children }: { children: any }) => {
+const PrivateRoute = ({ children }) => {
   const { UserStore } = useStore()
   const { currentUser } = UserStore
   return currentUser ? children : <Navigate to="/login" />
