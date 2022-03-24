@@ -74,7 +74,7 @@ const Login: React.FC = () => {
           rules={[
             { required: true, message: '请输入用户名!' },
             () => ({
-              validator(_, value) {
+              validator(_, value = '') {
                 if (/\W/.test(value))
                   return Promise.reject('只能由字母数字下划线组成')
                 if (value.length > 10) return Promise.reject('最多10个字符')
