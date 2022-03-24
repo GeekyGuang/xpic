@@ -1,4 +1,4 @@
-import { Form, Input, Button } from 'antd'
+import { Form, Input, Button, message } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { useStore } from '../store'
@@ -46,6 +46,7 @@ const Login: React.FC = () => {
         navigate('/')
       },
       (err) => {
+        message.error('用户名或密码错误, 请重试')
         console.log('登录失败')
         console.log(err)
       }
@@ -73,15 +74,6 @@ const Login: React.FC = () => {
           name="username"
           rules={[
             { required: true, message: '请输入用户名!' },
-            () => ({
-              validator(_, value = '') {
-                if (/\W/.test(value))
-                  return Promise.reject('只能由字母数字下划线组成')
-                if (value.length > 10) return Promise.reject('最多10个字符')
-                if (value.length < 3) return Promise.reject('最少3个字符')
-                return Promise.resolve()
-              },
-            }),
           ]}
         >
           <Input />
@@ -92,14 +84,6 @@ const Login: React.FC = () => {
           name="password"
           rules={[
             { required: true, message: '请输入密码!' },
-            {
-              min: 4,
-              message: '最少4个字符',
-            },
-            {
-              max: 16,
-              message: '最多16个字符',
-            },
           ]}
         >
           <Input.Password />

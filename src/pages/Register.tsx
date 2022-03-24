@@ -1,4 +1,4 @@
-import { Form, Input, Button } from 'antd'
+import { Form, Input, Button, message } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { useStore } from '../store'
@@ -46,8 +46,13 @@ const Register: React.FC = () => {
         navigate('/')
       },
       (err) => {
-        console.log('注册失败')
-        console.log(err)
+        if(err.code === 202) {
+          message.error('该用户名已被使用, 请换一个吧');
+        } else {
+          console.log('注册失败')
+          console.dir(err)
+        }
+
       }
     )
   }
