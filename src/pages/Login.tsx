@@ -5,15 +5,25 @@ import { useStore } from '../store'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 
 const Wrapper = styled.div`
-  max-width: 520px;
+  max-width: 270px;
   margin: 50px auto;
-  padding: 20px 50px;
+  padding: 20px 20px;
   border-radius: 4px;
   box-shadow: 0px 0px 5px 0 rgba(0, 0, 0, 0.2);
 
-  @media (max-width: 576px) {
-    max-width: 300px;
+  @media (min-width: 576px) {
+    max-width: 270px;
     padding: 20px 20px;
+  }
+
+  @media (min-width: 768px) {
+    max-width: 360px;
+    padding: 20px 30px;
+  }
+
+  @media (min-width: 992px) {
+    max-width: 480px;
+    padding: 20px 50px;
   }
 
   .ant-form-item-control-input-content {
