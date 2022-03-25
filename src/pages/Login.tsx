@@ -1,22 +1,18 @@
 import { Form, Input, Button, message } from 'antd'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { useStore } from '../store'
+import { UserOutlined, LockOutlined } from '@ant-design/icons'
 
 const Wrapper = styled.div`
-  width: 600px;
+  max-width: 520px;
   margin: 50px auto;
   padding: 20px 50px;
   border-radius: 4px;
   box-shadow: 0px 0px 5px 0 rgba(0, 0, 0, 0.2);
 
-  @media (max-width: 700px) {
-    width: 500px;
-    padding: 20px 20px;
-  }
-
-  @media (max-width: 575px) {
-    width: 300px;
+  @media (max-width: 576px) {
+    max-width: 300px;
     padding: 20px 20px;
   }
 
@@ -62,31 +58,29 @@ const Login: React.FC = () => {
       <h2>用户登录</h2>
       <Form
         name="basic"
-        labelCol={{ span: 4 }}
-        wrapperCol={{ span: 20 }}
         initialValues={{ remember: true }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
         <Form.Item
-          label="用户名"
           name="username"
-          rules={[
-            { required: true, message: '请输入用户名!' },
-          ]}
+          rules={[{ required: true, message: '请输入用户名!' }]}
         >
-          <Input />
+          <Input
+            prefix={<UserOutlined className="site-form-item-icon" />}
+            placeholder="用户名"
+          />
         </Form.Item>
 
         <Form.Item
-          label="密码"
           name="password"
-          rules={[
-            { required: true, message: '请输入密码!' },
-          ]}
+          rules={[{ required: true, message: '请输入密码!' }]}
         >
-          <Input.Password />
+          <Input.Password
+            prefix={<LockOutlined className="site-form-item-icon" />}
+            placeholder="密码"
+          />
         </Form.Item>
 
         <Form.Item wrapperCol={{ span: 24 }}>
@@ -95,6 +89,9 @@ const Login: React.FC = () => {
           </Button>
         </Form.Item>
       </Form>
+      <div style={{ textAlign: 'center' }}>
+        还没有账号？去<Link to="/register">注册</Link>
+      </div>
     </Wrapper>
   )
 }

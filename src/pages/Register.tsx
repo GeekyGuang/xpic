@@ -1,22 +1,17 @@
 import { Form, Input, Button, message } from 'antd'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { useStore } from '../store'
 
 const Wrapper = styled.div`
-  width: 600px;
+  max-width: 520px;
   margin: 50px auto;
   padding: 20px 50px;
   border-radius: 4px;
   box-shadow: 0px 0px 5px 0 rgba(0, 0, 0, 0.2);
 
-  @media (max-width: 700px) {
-    width: 500px;
-    padding: 20px 20px;
-  }
-
-  @media (max-width: 575px) {
-    width: 300px;
+  @media (max-width: 576px) {
+    max-width: 300px;
     padding: 20px 20px;
   }
 
@@ -46,13 +41,12 @@ const Register: React.FC = () => {
         navigate('/')
       },
       (err) => {
-        if(err.code === 202) {
-          message.error('该用户名已被使用, 请换一个吧');
+        if (err.code === 202) {
+          message.error('该用户名已被使用, 请换一个吧')
         } else {
           console.log('注册失败')
           console.dir(err)
         }
-
       }
     )
   }
@@ -66,8 +60,8 @@ const Register: React.FC = () => {
       <h2>用户注册</h2>
       <Form
         name="basic"
-        labelCol={{ span: 4 }}
-        wrapperCol={{ span: 20 }}
+        labelCol={{ span: 5 }}
+        wrapperCol={{ span: 19 }}
         initialValues={{ remember: true }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
@@ -134,6 +128,9 @@ const Register: React.FC = () => {
           </Button>
         </Form.Item>
       </Form>
+      <div style={{ textAlign: 'center' }}>
+        已有账号？去<Link to="/login">登录</Link>
+      </div>
     </Wrapper>
   )
 }
