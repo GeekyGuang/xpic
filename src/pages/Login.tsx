@@ -93,7 +93,7 @@ const Login: React.FC = () => {
 
   return (
     <Wrapper>
-      {show ? <p className="notes">请先登录才能使用哦~</p> : ''}
+      {show ? <p className="notes">请先登录才能上传图片哦~</p> : ''}
       <div>
         <h2>用户登录</h2>
         <Form
