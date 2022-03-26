@@ -24,42 +24,50 @@ const StyledHeader = styled.header`
     align-items: center;
     width: 100%;
 
-    > h2 {
+    > a {
       font-weight: 500;
-      line-height: 20px;
-      font-size: 20px;
+      line-height: 22px;
+      font-size: 22px;
       color: white;
       margin-bottom: 0;
       margin-right: 8px;
+      vertical-align: top;
+      display: inline-block;
+      padding-bottom: 2px;
     }
 
     > .nav-main {
       display: flex;
       justify-content: space-between;
       flex-grow: 1;
-      > nav > a {
-        color: #9a9da0;
-        margin-left: 16px;
-        padding: 0 4px;
+      > nav {
+        display: flex;
+        align-items: center;
 
-        &:hover {
-          color: #cccecf;
-        }
+        > a {
+          color: #9a9da0;
+          margin-left: 16px;
+          padding: 0 4px;
 
-        &.active {
-          position: relative;
-          color: #cccecf;
-        }
+          &:hover {
+            color: #cccecf;
+          }
 
-        &.active::after {
-          content: '';
-          display: block;
-          height: 2px;
-          width: 100%;
-          position: absolute;
-          left: 0;
-          top: 26px;
-          background: #1890ff;
+          &.active {
+            position: relative;
+            color: #cccecf;
+          }
+
+          &.active::after {
+            content: '';
+            display: block;
+            height: 2px;
+            width: 100%;
+            position: absolute;
+            left: 0;
+            top: 26px;
+            background: #1890ff;
+          }
         }
       }
     }
@@ -85,11 +93,13 @@ const StyledHeader = styled.header`
         > nav {
           display: flex;
           flex-direction: column;
+          align-items: flex-start;
           padding: 12px 0;
 
           > a {
             margin-left: 0;
             padding: 6px 4px;
+            width: 100%;
 
             &.active::after {
               top: 32px;
@@ -151,7 +161,7 @@ export const Header: React.FC = observer(() => {
   return (
     <StyledHeader>
       <div className="container">
-        <h2>XPIC</h2>
+        <a href="/">XPIC</a>
         <button className="collapseIcon" onClick={() => setShow(!show)}>
           <img src={collapseIcon} alt="" />
         </button>
