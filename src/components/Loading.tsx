@@ -1,35 +1,64 @@
 import styled, { keyframes } from 'styled-components'
 
-const wave = keyframes`
-  0% {width: 0; height: 0; opacity: 1;}
-  100% {width: 100px; height: 100px; opacity: 0;}
+const animation = keyframes`
+  0% {
+    stroke-dasharray: 1 98;
+    stroke-dashoffset: -105;
+  }
+  50% {
+    stroke-dasharray: 80 10;
+    stroke-dashoffset: -160;
+  }
+  100% {
+    stroke-dasharray: 1 98;
+    stroke-dashoffset: -300;
+  }
 `
 
-const StyledLoading = styled.div`
-  position: relative;
-  margin: 100px auto;
+const Container = styled.div`
+  margin: 60px auto;
+  width: 60px;
+  height: 60px;
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    margin: auto;
-    background: #b4b8f9;
-    border-radius: 50%;
-    animation: ${wave} 1.5s infinite linear;
-  }
-
-  &::after {
-    animation-delay: 0.75s;
+  #spinner {
+    transform-origin: center;
+    animation-name: ${animation};
+    animation-duration: 1.2s;
+    animation-timing-function: cubic-bezier;
+    animation-iteration-count: infinite;
   }
 `
 
 const Loading: React.FC = () => {
-  return <StyledLoading />
+  return (
+    <Container id="container">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="shadow">
+            <feDropShadow
+              dx="0"
+              dy="0"
+              stdDeviation="1.5"
+              floodColor="#40a9ff"
+            />
+          </filter>
+        </defs>
+        <circle
+          id="spinner"
+          style={{
+            fill: 'transparent',
+            stroke: '#40a9ff',
+            strokeWidth: '7px',
+            strokeLinecap: 'round',
+            filter: 'url(#shadow)',
+          }}
+          cx="50"
+          cy="50"
+          r="45"
+        />
+      </svg>
+    </Container>
+  )
 }
 
 export default Loading
