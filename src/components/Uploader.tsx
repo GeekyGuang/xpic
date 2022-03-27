@@ -203,7 +203,14 @@ const Uploader = observer(() => {
                   placeholder=" 宽度(可选)"
                   value={store.width}
                   ref={widthRef}
-                  onChange={() => store.setWidth()}
+                  onChange={(e) => {
+                    if (
+                      e.target.value === '' ||
+                      /^[1-9][0-9]*$/.test(e.target.value)
+                    ) {
+                      store.setWidth()
+                    }
+                  }}
                 />{' '}
                 -{' '}
                 <input
@@ -211,7 +218,14 @@ const Uploader = observer(() => {
                   placeholder=" 高度(可选)"
                   ref={heightRef}
                   value={store.height}
-                  onChange={() => store.setHeight()}
+                  onChange={(e) => {
+                    if (
+                      e.target.value === '' ||
+                      /^[1-9][0-9]*$/.test(e.target.value)
+                    ) {
+                      store.setHeight()
+                    }
+                  }}
                 />
               </dd>
               <dd>
