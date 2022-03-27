@@ -10,12 +10,15 @@ const { Dragger } = Upload
 
 const Result = styled.div`
   margin-top: 20px;
+  border: 1px dashed #6ebcfc;
+  background: #fafafa;
+  padding: 20px;
+
+  > h2 {
+    text-align: center;
+  }
 
   > dl {
-    border: 1px dashed #6ebcfc;
-    background: #fafafa;
-    padding: 20px;
-
     .filename {
       border: 1px solid #d9d9d9;
       width: 100%;
@@ -30,16 +33,6 @@ const Result = styled.div`
       padding-bottom: 6px;
       font-weight: 600;
     }
-
-    /* a {
-      display: inline-block;
-      width: 100%;
-      border: 1px solid #d9d9d9;
-      padding: 4px;
-      white-space: wrap;
-      word-wrap: break-word;
-      background: white;
-    } */
 
     img {
       max-height: 280px;
@@ -131,7 +124,6 @@ const Uploader = observer(() => {
         </>
       ) : (
         <>
-          <h2>上传图片</h2>
           <Dragger {...props}>
             <p className="ant-upload-drag-icon">
               <InboxOutlined />
