@@ -51,6 +51,7 @@ const Result = styled.div`
       > input {
         width: 100px;
         border: 1px solid #d9d9d9;
+        padding: 4px;
 
         &:focus {
           outline: none;
@@ -60,10 +61,42 @@ const Result = styled.div`
   }
 `
 
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`
+
 const Uploader = observer(() => {
   const { ImageStore } = useStore()
   const onlineUrlRef = useRef() as MutableRefObject<HTMLInputElement>
   const resizeUrlRef = useRef() as MutableRefObject<HTMLInputElement>
+  const widthRef = useRef() as MutableRefObject<HTMLInputElement>
+  const heightRef = useRef() as MutableRefObject<HTMLInputElement>
+
+  const store = useLocalStore(() => ({
+    width: '',
+    setWidth() {
+      store.width = widthRef.current.value
+    },
+    get widthStr() {
+      return store.width ? `/w/${store.width}` : ''
+    },
+    height: '',
+    setHeight() {
+      store.height = heightRef.current.value
+    },
+    get heightStr() {
+      return store.height ? `/h/${store.height}` : ''
+    },
+    get fullStr() {
+      return (
+        ImageStore.serverFile.attributes.url.attributes.url +
+        '?imageView2/0' +
+        store.widthStr +
+        store.heightStr
+      )
+    },
+  }))
 
   const handleCopy = (ref) => {
     ref.select()
@@ -125,22 +158,24 @@ const Uploader = observer(() => {
                   ref={onlineUrlRef}
                   readOnly
                 />
-                <Button
-                  type="default"
-                  size="small"
-                  onClick={() => handleCopy(onlineUrlRef.current)}
-                >
-                  复制
-                </Button>
-                <Button type="default" size="small">
-                  <a
-                    target="_blank"
-                    href={ImageStore.serverFile.attributes.url.attributes.url}
-                    rel="noreferrer"
+                <ButtonWrapper>
+                  <Button
+                    type="default"
+                    size="small"
+                    onClick={() => handleCopy(onlineUrlRef.current)}
                   >
-                    打开
-                  </a>
-                </Button>
+                    复制
+                  </Button>
+                  <Button type="default" size="small">
+                    <a
+                      target="_blank"
+                      href={ImageStore.serverFile.attributes.url.attributes.url}
+                      rel="noreferrer"
+                    >
+                      打开
+                    </a>
+                  </Button>
+                </ButtonWrapper>
               </dd>
               <dt>文件名</dt>
               <dd>
@@ -158,9 +193,23 @@ const Uploader = observer(() => {
                   alt=""
                 />
               </dd>
-              <dt>更多尺寸</dt>
+              <dt>自定义尺寸</dt>
               <dd className="resize">
-                宽 <input type="text" /> 高 <input type="text" />
+                <input
+                  type="text"
+                  placeholder=" 宽度(可选)"
+                  value={store.width}
+                  ref={widthRef}
+                  onChange={() => store.setWidth()}
+                />{' '}
+                -{' '}
+                <input
+                  type="text"
+                  placeholder=" 高度(可选)"
+                  ref={heightRef}
+                  value={store.height}
+                  onChange={() => store.setHeight()}
+                />
               </dd>
               <dd>
                 <input
@@ -168,25 +217,24 @@ const Uploader = observer(() => {
                   className="filename"
                   readOnly
                   ref={resizeUrlRef}
+                  value={store.fullStr}
                 />
-                <Button
-                  type="default"
-                  size="small"
-                  onClick={() => {
-                    handleCopy(resizeUrlRef.current)
-                  }}
-                >
-                  复制
-                </Button>
-                <Button type="default" size="small">
-                  <a
-                    target="_blank"
-                    href={ImageStore.serverFile.attributes.url.attributes.url}
-                    rel="noreferrer"
+                <ButtonWrapper>
+                  <Button
+                    type="default"
+                    size="small"
+                    onClick={() => {
+                      handleCopy(resizeUrlRef.current)
+                    }}
                   >
-                    打开
-                  </a>
-                </Button>
+                    复制
+                  </Button>
+                  <Button type="default" size="small">
+                    <a target="_blank" href={store.fullStr} rel="noreferrer">
+                      打开
+                    </a>
+                  </Button>
+                </ButtonWrapper>
               </dd>
             </dl>
           </Result>
