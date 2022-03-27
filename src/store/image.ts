@@ -19,6 +19,10 @@ class ImageStore {
     this.file = newFile
   }
 
+  @action resetServerFile() {
+    this.serverFile = null
+  }
+
   @action upload() {
     this.serverFile = null
     this.isUploading = true

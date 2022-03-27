@@ -16,7 +16,7 @@ const Result = styled.div`
     padding: 20px;
 
     .filename {
-      border: 1px solid #999;
+      border: 1px solid #d9d9d9;
       width: 100%;
       padding: 4px;
 
@@ -32,7 +32,7 @@ const Result = styled.div`
     a {
       display: inline-block;
       width: 100%;
-      border: 1px solid #999;
+      border: 1px solid #d9d9d9;
       padding: 4px;
       white-space: wrap;
       word-wrap: break-word;
