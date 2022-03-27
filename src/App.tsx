@@ -15,7 +15,7 @@ const Register = lazy(() => import('./pages/Register'))
 
 const PrivateRoute = ({ children }) => {
   const { UserStore } = useStore()
-  const { currentUser } = UserStore
+  const {currentUser} = UserStore
   return currentUser ? children : <Navigate to="/login" />
 }
 

@@ -6,7 +6,7 @@ class AuthStore {
   @observable isLogin = false
   @observable isLoading = false
   @observable values = {
-    username: 'aaa',
+    username: '',
     password: '',
   }
 

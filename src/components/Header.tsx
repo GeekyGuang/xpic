@@ -174,7 +174,7 @@ export const Header: React.FC = observer(() => {
           {UserStore.currentUser ? (
             <div className="checkout">
               <span style={{ color: 'white', marginRight: '8px' }}>
-                {UserStore.currentUser.attributes.username}
+                {UserStore.currentUser.username}
               </span>
               <Button type="default" size="small" onClick={handleLogout}>
                 注销
