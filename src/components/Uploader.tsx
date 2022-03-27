@@ -66,15 +66,30 @@ const Uploader = observer(() => {
 
   return (
     <>
-      <Loading />
-      <h2>上传图片</h2>
-      <Dragger {...props}>
-        <p className="ant-upload-drag-icon">
-          <InboxOutlined />
-        </p>
-        <p className="ant-upload-text">点击或拖拽图片到这里上传</p>
-        <p className="ant-upload-hint">严禁上传色情/暴力/侵犯版权等违规图片</p>
-      </Dragger>
+      {ImageStore.isUploading ? (
+        <>
+          <Loading />
+          <p
+            style={{ textAlign: 'center', fontSize: '18px', color: '#40a9ff' }}
+          >
+            努力上传中...
+          </p>
+        </>
+      ) : (
+        <>
+          <h2>上传图片</h2>
+          <Dragger {...props}>
+            <p className="ant-upload-drag-icon">
+              <InboxOutlined />
+            </p>
+            <p className="ant-upload-text">点击或拖拽图片到这里上传</p>
+            <p className="ant-upload-hint">
+              严禁上传色情/暴力/侵犯版权等违规图片
+            </p>
+          </Dragger>
+        </>
+      )}
+
       <div>
         {ImageStore.serverFile ? (
           <Result>

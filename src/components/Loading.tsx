@@ -16,7 +16,7 @@ const animation = keyframes`
 `
 
 const Container = styled.div`
-  margin: 60px auto;
+  margin: 60px auto 24px;
   width: 60px;
   height: 60px;
 
