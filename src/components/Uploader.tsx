@@ -102,6 +102,17 @@ const Uploader = observer(() => {
     beforeUpload: (file: any) => {
       ImageStore.setFile(file)
       ImageStore.setFilename(file.name)
+
+      if (!/(svg$)|(png$)|(jpg$)|(jpeg$)|(gif$)/gi.test(file.type)) {
+        message.error('仅支持 png/svg/jpg/jpeg/gif 格式的图片')
+        return false
+      }
+
+      if (file.size > 2048 * 1024) {
+        message.error('图片最大支持2M')
+        return false
+      }
+
       ImageStore.upload()
         .then((file) => console.dir(file))
         .catch((err) => {
@@ -130,7 +141,7 @@ const Uploader = observer(() => {
             </p>
             <p className="ant-upload-text">点击或拖拽图片到这里上传</p>
             <p className="ant-upload-hint">
-              严禁上传色情/暴力/侵犯版权等违规图片
+              仅支持 png/svg/gif/jpg/jpeg 格式, 图片最大2M
             </p>
           </Dragger>
         </>

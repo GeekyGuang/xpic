@@ -1,3 +1,4 @@
+import { message } from 'antd'
 import { makeObservable, observable, action } from 'mobx'
 import { Uploader } from '../models'
 
@@ -34,6 +35,7 @@ class ImageStore {
         })
         .catch((err: any) => {
           console.log('上传失败')
+          message.error('上传失败')
           reject(err)
         })
         .finally(() => {
