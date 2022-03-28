@@ -59,6 +59,21 @@ const Uploader = {
       )
     })
   },
+
+  get(page = 0, limit = 10) {
+    const query = new Query('Image')
+    query.include('owner')
+    query.limit(limit)
+    query.skip(page * limit)
+    query.descending('createAt')
+    query.equalTo('owner', AV.User.current())
+    return new Promise((resolve, reject) => {
+      query
+        .find()
+        .then((images) => resolve(images))
+        .catch((error) => reject(error))
+    })
+  },
 }
 
 export { Auth, Uploader }
