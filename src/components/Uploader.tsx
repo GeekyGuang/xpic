@@ -4,7 +4,7 @@ import { InboxOutlined } from '@ant-design/icons'
 import { observer, useLocalStore } from 'mobx-react'
 import styled from 'styled-components'
 import Loading from './Loading'
-import { MutableRefObject, useRef } from 'react'
+import { MutableRefObject, useEffect, useRef } from 'react'
 import { handleCopy } from '../models'
 
 const { Dragger } = Upload
@@ -91,6 +91,10 @@ const Uploader = observer(() => {
       )
     },
   }))
+
+  useEffect(() => {
+    return () => ImageStore.resetServerFile()
+  }, [])
 
   const props = {
     showUploadList: false,
