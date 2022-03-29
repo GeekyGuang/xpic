@@ -64,6 +64,7 @@ const Uploader = {
   get(page = 0, limit = 10) {
     const query = new Query('Image')
     query.include('owner')
+    query.include('url')
     query.limit(limit)
     query.skip(page * limit)
     query.descending('createAt')
@@ -71,9 +72,16 @@ const Uploader = {
     return new Promise((resolve, reject) => {
       query
         .find()
-        .then((images) => resolve(images))
+        .then((images) =>
+          resolve(images.filter((image: any) => image.attributes.url))
+        )
         .catch((error) => reject(error))
     })
+  },
+
+  delete(id) {
+    const file = AV.File.createWithoutData(id)
+    file.destroy()
   },
 }
 

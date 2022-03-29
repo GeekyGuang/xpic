@@ -67,66 +67,76 @@ const History: React.FC = observer(() => {
 
   return (
     <>
-      <InfiniteScroll
-        dataLength={HistoryStore.list.length}
-        next={loadMore}
-        loader={<Loading />}
-        hasMore={!HistoryStore.isLoading && HistoryStore.hasMore}
-        endMessage={<Divider plain>没有更多了 🤐</Divider>}
-      >
-        <List
-          dataSource={HistoryStore.list}
-          //@ts-ignore
-          renderItem={(item: any, i) =>
-            item ? (
-              <List.Item key={item.id}>
-                <ListItem>
-                  <div>
-                    <img src={item.attributes.url.attributes.url} />
-                  </div>
-                  <div className="info">
-                    <h5>{item.attributes.filename}</h5>
-                    <h1>{i}</h1>
-                    <input
-                      type="text"
-                      value={item.attributes.url.attributes.url}
-                      readOnly
-                      ref={(dom) => {
-                        if (dom) inputRef.current[i] = dom
-                      }}
-                    />
-                    <div className="buttons">
-                      <Button
-                        type="default"
-                        size="small"
-                        onClick={() => {
-                          handleCopy(inputRef.current[i])
-                        }}
-                      >
-                        复制
-                      </Button>
-                      <Button type="default" size="small">
-                        <a
-                          target="_blank"
-                          href={item.attributes.url.attributes.url}
-                          rel="noreferrer"
-                        >
-                          打开
-                        </a>
-                      </Button>
-                      <Button type="primary" size="small" danger>
-                        删除
-                      </Button>
+      {HistoryStore.list ? (
+        <InfiniteScroll
+          dataLength={HistoryStore.list.length}
+          next={loadMore}
+          loader={<Loading />}
+          hasMore={!HistoryStore.isLoading && HistoryStore.hasMore}
+          endMessage={''}
+        >
+          <List
+            dataSource={HistoryStore.list}
+            //@ts-ignore
+            renderItem={(item: any, i) =>
+              item ? (
+                <List.Item key={item.id}>
+                  <ListItem>
+                    <div>
+                      <img src={item.attributes.url.attributes.url} />
                     </div>
-                  </div>
-                </ListItem>
-              </List.Item>
-            ) : (
-              ''
-            )
-          }
-        ></List>
-      </InfiniteScroll>
+                    <div className="info">
+                      <h5>{item.attributes.filename}</h5>
+                      <input
+                        type="text"
+                        value={item.attributes.url.attributes.url}
+                        readOnly
+                        ref={(dom) => {
+                          if (dom) inputRef.current[i] = dom
+                        }}
+                      />
+                      <div className="buttons">
+                        <Button
+                          type="default"
+                          size="small"
+                          onClick={() => {
+                            handleCopy(inputRef.current[i])
+                          }}
+                        >
+                          复制
+                        </Button>
+                        <Button type="default" size="small">
+                          <a
+                            target="_blank"
+                            href={item.attributes.url.attributes.url}
+                            rel="noreferrer"
+                          >
+                            打开
+                          </a>
+                        </Button>
+                        <Button
+                          type="primary"
+                          size="small"
+                          danger
+                          onClick={() => {
+                            HistoryStore.delete(item.attributes.url.id, i)
+                          }}
+                        >
+                          删除
+                        </Button>
+                      </div>
+                    </div>
+                  </ListItem>
+                </List.Item>
+              ) : (
+                ''
+              )
+            }
+          ></List>
+        </InfiniteScroll>
+      ) : (
+        <Loading />
+      )}
     </>
   )
 })

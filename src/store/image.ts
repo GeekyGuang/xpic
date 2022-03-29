@@ -32,6 +32,7 @@ class ImageStore {
         .then((serverFile: any) => {
           this.serverFile = serverFile
           resolve(serverFile)
+          message.success('上传成功')
         })
         .catch((err: any) => {
           console.log('上传失败')

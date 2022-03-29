@@ -22,20 +22,27 @@ class HistoryStore {
     Uploader.get(this.page, this.limit)
       .then((newList) => {
         this.append(newList)
-        console.log('我在historyStore get')
-        console.log(this.list)
         this.page++
         if ((newList as any).length < this.limit) {
           this.hasMore = false
         }
       })
       .catch((error) => {
-        console.log('historyStore get失败')
         message.error('加载数据失败')
       })
       .finally(() => {
         this.isLoading = false
       })
+  }
+
+  @action delete(id, i) {
+    try {
+      Uploader.delete(id)
+      this.list.splice(i, 1)
+      message.success('删除成功')
+    } catch (e) {
+      message.error('删除失败')
+    }
   }
 
   @action resetHistory() {
