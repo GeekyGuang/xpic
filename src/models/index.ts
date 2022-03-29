@@ -1,3 +1,4 @@
+import { message } from 'antd'
 import AV, { Query, User } from 'leancloud-storage'
 
 AV.init({
@@ -76,4 +77,10 @@ const Uploader = {
   },
 }
 
-export { Auth, Uploader }
+const handleCopy = (ref) => {
+  ref.select()
+  document.execCommand('copy')
+  message.success('复制成功')
+}
+
+export { Auth, Uploader, handleCopy }

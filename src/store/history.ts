@@ -7,7 +7,7 @@ class HistoryStore {
   @observable isLoading = false
   @observable hasMore = true
   @observable page = 0
-  limit = 10
+  limit = 20
 
   constructor() {
     makeObservable(this)
@@ -22,6 +22,7 @@ class HistoryStore {
     Uploader.get(this.page, this.limit)
       .then((newList) => {
         this.append(newList)
+        console.log('我在historyStore get')
         console.log(this.list)
         this.page++
         if ((newList as any).length < this.limit) {
@@ -29,11 +30,19 @@ class HistoryStore {
         }
       })
       .catch((error) => {
+        console.log('historyStore get失败')
         message.error('加载数据失败')
       })
       .finally(() => {
         this.isLoading = false
       })
+  }
+
+  @action resetHistory() {
+    this.list = []
+    this.isLoading = false
+    this.hasMore = true
+    this.page = 0
   }
 }
 

@@ -5,6 +5,7 @@ import { observer, useLocalStore } from 'mobx-react'
 import styled from 'styled-components'
 import Loading from './Loading'
 import { MutableRefObject, useRef } from 'react'
+import { handleCopy } from '../models'
 
 const { Dragger } = Upload
 
@@ -90,12 +91,6 @@ const Uploader = observer(() => {
       )
     },
   }))
-
-  const handleCopy = (ref) => {
-    ref.select()
-    document.execCommand('copy')
-    message.success('复制成功')
-  }
 
   const props = {
     showUploadList: false,
