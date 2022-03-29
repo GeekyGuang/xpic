@@ -147,7 +147,7 @@ const StyledHeader = styled.header`
 `
 
 export const Header: React.FC = observer(() => {
-  const { UserStore, ImageStore } = useStore()
+  const { UserStore, ImageStore, HistoryStore } = useStore()
   const navigate = useNavigate()
   const [show, setShow] = useState(false)
 
@@ -156,6 +156,7 @@ export const Header: React.FC = observer(() => {
     Auth.logOut()
     UserStore.resetUser()
     ImageStore.resetServerFile()
+    HistoryStore.resetHistory()
     navigate('/login')
   }
 
