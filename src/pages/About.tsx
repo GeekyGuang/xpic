@@ -114,7 +114,8 @@ const About: React.FC = () => {
           </ul>
         </div>
         <div className="link">
-          本 Demo 使用 React + React Router 6 + LeanCloud + antd 技术栈
+          本 Demo 使用 React + TypeScript + React Router 6 + LeanCloud + antd
+          技术栈开发
         </div>
       </Container>
     </>
