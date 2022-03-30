@@ -163,7 +163,7 @@ export const Header: React.FC = observer(() => {
   return (
     <StyledHeader>
       <div className="container">
-        <a href="/">XPIC</a>
+        <Link to="/">XPIC</Link>
         <button className="collapseIcon" onClick={() => setShow(!show)}>
           <img src={collapseIcon} alt="" />
         </button>

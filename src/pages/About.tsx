@@ -1,6 +1,7 @@
 import laugh from '../assets/icons/laugh.svg'
 import angry from '../assets/icons/angry.svg'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 const H1 = styled.h1`
   font-size: 48px;
@@ -97,7 +98,7 @@ const About: React.FC = () => {
         <H1>关于 XPIC 图床</H1>
         <p className="about">
           <img src={laugh} alt="" />
-          <a href="/">XPIC</a>
+          <Link to="/">XPIC</Link>
           免费图床仅供分享图片使用，我们保留随时删除图片并举报上传违规图片者的权利
         </p>
         <div className="warning">
@@ -113,10 +114,7 @@ const About: React.FC = () => {
           </ul>
         </div>
         <div className="link">
-          本 Demo 使用 React + React Router 6 + LeanCloud + antd 技术栈{' '}
-          <a href="https://github.com/TravisWongX/xpic" target="_blank">
-            GitHub仓库链接
-          </a>
+          本 Demo 使用 React + React Router 6 + LeanCloud + antd 技术栈
         </div>
       </Container>
     </>
