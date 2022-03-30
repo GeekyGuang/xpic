@@ -120,6 +120,7 @@ const Login: React.FC = () => {
             <Input.Password
               prefix={<LockOutlined className="site-form-item-icon" />}
               placeholder="密码"
+              autoComplete="off"
             />
           </Form.Item>
 

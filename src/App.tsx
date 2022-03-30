@@ -21,7 +21,7 @@ const PrivateRoute = ({ children }) => {
 
 const MainWrapper = styled.div`
   width: 100%;
-  margin: 20px auto;
+  margin: 0 auto;
 
   @media (min-width: 980px) {
     max-width: 92%;
