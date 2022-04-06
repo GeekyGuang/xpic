@@ -2,9 +2,9 @@ import { message } from 'antd'
 import AV, { Query, User } from 'leancloud-storage'
 
 AV.init({
-  appId: 'rp4figvP1pteyxRAyzYjRSHo-gzGzoHsz',
-  appKey: 'SsjIAupQFlvKqHtnpeOOan5j',
-  serverURL: 'https://rp4figvp.lc-cn-n1-shared.com',
+  appId: 'EOdK6NcpHIpMTMBXNAtA9MTS-MdYXbMMI',
+  appKey: 'aoieCDPoYse5WTa5J98ipN9X',
+  serverURL: 'https://eodk6ncp.api.lncldglobal.com',
 })
 
 const Auth = {
