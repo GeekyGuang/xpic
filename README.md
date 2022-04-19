@@ -4,12 +4,18 @@
 
 ## 安装依赖
 
-运行 `yarn` 或者 `npm install` 即可安装依赖
+```
+yarn install
+```
 
 ## 开发
 
-运行 `yarn start` 或者 `npm run start` 即可开始开发
+```
+yarn start
+```
 
 ## 打包
 
-运行 `yarn build` 或者 `npm run build` 即可打包文件
+```
+yarn build
+```
