@@ -98,7 +98,7 @@ const Login: React.FC = () => {
         <h2>用户登录</h2>
         <Form
           name="basic"
-          initialValues={{ remember: true }}
+          initialValues={{ username: 'jack', password: '1234', remember: true }}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
           autoComplete="off"

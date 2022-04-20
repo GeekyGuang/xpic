@@ -6,8 +6,8 @@ class AuthStore {
   @observable isLogin = false
   @observable isLoading = false
   @observable values = {
-    username: '',
-    password: '',
+    username: 'jack',
+    password: '1234',
   }
 
   constructor() {
